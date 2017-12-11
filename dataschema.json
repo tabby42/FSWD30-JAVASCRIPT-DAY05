@@ -1,22 +1,35 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Product",
-    "description": "A product from Acme's catalog",
+    "title": "Employee",
+    "description": "Employee data",
     "type": "object",
     "properties": {
         "id": {
-            "description": "The unique identifier for a product",
+            "description": "The unique identifier for an employee",
             "type": "integer"
         },
-        "name": {
-            "description": "Name of the product",
+        "firstname": {
+            "description": "First Name",
             "type": "string"
         },
-        "price": {
+         "lastname": {
+            "description": "Last Name",
+            "type": "string"
+        },
+         "email": {
+            "description": "E-Mail Address",
+            "type": "string",
+            "pattern":"^[a-z0-9]+(\\.[_a-z0-9]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,15})$"
+        },
+         "jobtitle": {
+            "description": "job Title",
+            "type": "string"
+        },
+        "salary": {
             "type": "number",
             "minimum": 0,
             "exclusiveMinimum": true
         }
     },
-    "required": ["id", "name", "price"]
+    "required": ["id", "firstname", "lastname", "jobtitle"]
 }
