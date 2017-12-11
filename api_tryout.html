@@ -20,7 +20,18 @@
 	<hr>
 	<div id="output">
 	</div>
-
+	<hr>
+	<div id="json">
+		<table>
+			<caption>Employees</caption>
+			<thead >
+				<tr id="thead"></tr>
+			</thead>
+			<tbody id="tbody">
+				
+			</tbody>
+		</table>
+	</div>
 	<script>
 	window.fbAsyncInit = function() {
 	    FB.init({
@@ -83,6 +94,30 @@
 	     js.src = "https://connect.facebook.net/en_US/sdk.js";
 	     fjs.parentNode.insertBefore(js, fjs);
 	   }(document, 'script', 'facebook-jssdk'));
+
+	  //https://json-schema-validator.herokuapp.com/
+	  //read json file
+	    var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		        var data = JSON.parse(this.responseText);
+		        var thead = document.getElementById("thead");
+		        var tbody = document.getElementById("tbody");
+
+		        for (key in data[0]) {
+		        	thead.innerHTML += "<td>" + key + "</td>";
+		        }
+		        for (var i = 0; i < data.length; i++) {
+		        	var tr = document.createElement("tr");
+		        	for (prop in data[i]) {
+		        		tr.innerHTML += "<td>" + data[i][prop] + "</td>";
+		        	}
+		        	tbody.appendChild(tr);
+		        }
+		    }
+		};
+		xmlhttp.open("GET", "employees.json", true);
+		xmlhttp.send();
 	</script>
 
 	
