@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>API Example</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<!-- <div
+	  class="fb-like"
+	  data-share="true"
+	  data-width="450"
+	  data-show-faces="true">
+	</div>  -->
+	<button type="button" id="login">Login</button>
+	<button type="button" id="logout">Logout</button>
+	<button type="button" id="share">Share</button>
+	<button type="button" id="get">get feed from "wortspielwiese"</button>
+	<hr>
+	<div id="output">
+	</div>
+
+	<script>
+	window.fbAsyncInit = function() {
+	    FB.init({
+	      appId            : '1503778469704131',
+	      autoLogAppEvents : true,
+	      xfbml            : true,
+	      version          : 'v2.11'
+	    });
+	    document.getElementById("share").addEventListener("click", function() {
+	    	FB.ui({
+			  method: 'share_open_graph',
+			  action_type: 'og.likes',
+			  action_properties: JSON.stringify({
+			    object:'http://rogerdudler.github.io/git-guide/',
+			  })
+			}, function(response){
+			  // Debug response (optional)
+			  console.log(response);
+			});
+	    });
+	    
+		document.getElementById("login").addEventListener("click", function () {
+			FB.login(function(response) {
+		        if (response.authResponse) {
+		            console.log('Access Token: ' + response.authResponse.accessToken);
+		        } else {
+		            console.log('User cancelled login or did not fully authorize.');
+		        }
+		    });
+		});
+
+		document.getElementById("logout").addEventListener("click", function () {
+			FB.logout(function(response) {
+			  	// user is now logged out
+			  	console.log(response);
+			});
+		});
+
+		document.getElementById("get").addEventListener("click", function() {
+			FB.api(
+			    "/351214632263/feed",
+			    function (response) {
+			      if (response && !response.error) {
+			        /* handle the result */
+			        console.log(response);
+			        document.getElementById("output").innerHTML = response.data[3].message + "<br>" + response.data[3].created_time;
+
+			      } else {
+			        console.log(response.error);
+			      }
+			    }
+			);
+		});
+	 };
+
+	  (function(d, s, id){
+	     var js, fjs = d.getElementsByTagName(s)[0];
+	     if (d.getElementById(id)) {return;}
+	     js = d.createElement(s); js.id = id;
+	     js.src = "https://connect.facebook.net/en_US/sdk.js";
+	     fjs.parentNode.insertBefore(js, fjs);
+	   }(document, 'script', 'facebook-jssdk'));
+	</script>
+
+	
+</body>
+</html>
