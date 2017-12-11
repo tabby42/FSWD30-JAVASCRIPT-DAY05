@@ -13,12 +13,22 @@
 </head>
 <body>
 	<p id="demo"></p>
+	<p id="sandwich"></p>
+
 	<div id="map">
 		
 	</div>
 	<script src="data.json"> </script>
 	<script type="text/javascript">
-		console.log(data);
+		var sandwiches = { "sandwich": "hamburger", "calories": "260" };
+		var fries = { "fries_size": "Large French Fries", "calories": "570" };
+
+		//My favorite sandwich is a Hamburger which has approximately 260 calories, 
+		//along with it I enjoy eating Large French Fries which have about 570 calories.
+		document.getElementById("sandwich").innerHTML += "My favorite sandwich is a " + sandwiches.sandwich 
+		+ " which has approximately " + sandwiches.calories + " calories. Along with it I enjoy eating " 
+		+ fries.fries_size + " which have " + fries.calories + "calories."; 
+		
 		for (var i = 0; i < data["Employees"].length; i++) {
 			document.getElementById("demo").innerHTML += data["Employees"][i].jobTitleName + "<br>";
 		}
