@@ -1,0 +1,22 @@
+[{
+    "id": 1,
+    "firstname": "Patrik",
+    "lastname": "Jonathan",
+    "email": "patrik.k.jonathan@gmail.com",
+    "jobtitle": "Developer",
+    "salary": 2000
+}, {
+    "id": 2,
+    "firstName": "Marie",
+    "lastName": "Frühling",
+    "email": "marie.f@gmail.com",
+    "jobtitle": "Whatever",
+    "salary": 1800
+}, {
+    "id": 3,
+    "firstName": "Herbert",
+    "lastName": "Herbst",
+    "email": "patrik.k.jonathan@gmail.com",
+    "jobtitle": "Anything",
+    "salary": 1200
+}]
